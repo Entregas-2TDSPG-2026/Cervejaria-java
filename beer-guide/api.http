@@ -1,0 +1,97 @@
+### BASE URL
+@base = http://localhost:8080
+
+### ============================================================
+### BREWERIES - /breweries
+### ============================================================
+
+### GET - Lista todas as cervejarias
+GET {{base}}/breweries
+
+### GET - Busca cervejaria por ID
+GET {{base}}/breweries/1
+
+### POST - Cadastra nova cervejaria
+POST {{base}}/breweries
+Content-Type: application/json
+
+{
+  "name": "Cervejaria Bohemia",
+  "country": "Brasil"
+}
+
+### PUT - Atualiza cervejaria
+PUT {{base}}/breweries/1
+Content-Type: application/json
+
+{
+  "name": "Serra Alta Premium",
+  "country": "Brasil"
+}
+
+### DELETE - Remove cervejaria
+DELETE {{base}}/breweries/1
+
+### ============================================================
+### BEERS - /beers
+### ============================================================
+
+### GET - Lista todas as cervejas
+GET {{base}}/beers
+
+### GET - Busca cerveja por ID
+GET {{base}}/beers/1
+
+### GET - Lista cervejas por cervejaria
+GET {{base}}/beers/brewery/1
+
+### POST - Cadastra nova cerveja
+POST {{base}}/beers
+Content-Type: application/json
+
+{
+  "name": "Red Ale Especial",
+  "description": "Red Ale com notas de caramelo e lúpulo americano",
+  "alcoholContent": 5.8,
+  "harmonization": "Hambúrguer, batata frita",
+  "breweryId": 1
+}
+
+### PUT - Atualiza cerveja
+PUT {{base}}/beers/1
+Content-Type: application/json
+
+{
+  "name": "Primavera IPA Double",
+  "description": "Double IPA com amargor intenso e aroma tropical",
+  "alcoholContent": 8.0,
+  "harmonization": "Queijos fortes, churrasco",
+  "breweryId": 1
+}
+
+### DELETE - Remove cerveja
+DELETE {{base}}/beers/1
+
+### ============================================================
+### ACTUATOR - Observabilidade
+### ============================================================
+
+### Health
+GET {{base}}/actuator/health
+
+### Info da aplicação
+GET {{base}}/actuator/info
+
+### Métricas
+GET {{base}}/actuator/metrics
+
+### Caches (verificar cache ativo)
+GET {{base}}/actuator/caches
+
+### ============================================================
+### LINKS ÚTEIS (abrir no browser)
+### ============================================================
+### Swagger UI:   http://localhost:8080/swagger-ui.html
+### H2 Console:   http://localhost:8080/h2-console
+###   JDBC URL:   jdbc:h2:mem:beerguide
+###   User: sa    Password: (vazio)
