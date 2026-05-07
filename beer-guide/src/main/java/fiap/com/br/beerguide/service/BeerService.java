@@ -45,7 +45,6 @@ public class BeerService {
     @CacheEvict(value = {"beers", "beer", "beersByBrewery"}, allEntries = true)
     public Beer updateBeer(Long id, String name, String description, Double alcoholContent, String harmonization, Long breweryId) {
 
-        // Busca direto do repository para garantir entidade gerenciada pelo JPA
         Beer existing = beerRepository.findById(id).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Beer not found with id: " + id)
         );
@@ -55,9 +54,13 @@ public class BeerService {
         );
 
         existing.setName(name);
+
         existing.setDescription(description);
+
         existing.setAlcoholContent(alcoholContent);
+
         existing.setHarmonization(harmonization);
+
         existing.setBrewery(brewery);
 
         return beerRepository.save(existing);
